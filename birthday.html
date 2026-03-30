@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Poetic Birthday | Maulidia Nur Ihsani</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0a0f1e 0%, #1a142b 40%, #1f212e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Georgia', 'Times New Roman', 'Playfair Display', serif;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated stars background */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, #fff9e6, #ffdfaa);
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255, 215, 140, 0.6);
+            animation: starTwinkle 2s infinite alternate;
+        }
+
+        @keyframes starTwinkle {
+            0% { opacity: 0.2; transform: scale(0.7);}
+            100% { opacity: 1; transform: scale(1.1);}
+        }
+
+        /* Floating petals / dust */
+        .floating-magic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: radial-gradient(circle, #ffdd99, #ffb66b);
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.4;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            15% { opacity: 0.5; }
+            85% { opacity: 0.6; }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main card */
+        .birthday-sanctum {
+            position: relative;
+            z-index: 20;
+            max-width: 880px;
+            width: 100%;
+            background: rgba(25, 20, 35, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 3rem;
+            padding: 1.8rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 205, 120, 0.3);
+            border: 1px solid rgba(255, 210, 130, 0.4);
+        }
+
+        .poem-core {
+            background: #fffef7;
+            background-image: radial-gradient(circle at 15% 40%, rgba(255, 235, 190, 0.3) 1.8px, transparent 1.8px);
+            background-size: 30px 30px;
+            border-radius: 2.2rem;
+            padding: 2.2rem 2rem;
+            text-align: center;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35);
+        }
+
+        .candle-bless {
+            font-size: 3.6rem;
+            letter-spacing: 8px;
+            filter: drop-shadow(0 6px 12px rgba(255, 140, 40, 0.6));
+            animation: gentleFlicker 2s infinite alternate;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes gentleFlicker {
+            0% { text-shadow: 0 0 4px #ffaa55, 0 0 8px #ff9944; opacity: 0.9; transform: scale(1);}
+            100% { text-shadow: 0 0 18px #ffcc77, 0 0 28px #ffaa55; opacity: 1; transform: scale(1.02);}
+        }
+
+        h1 {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #c27a38, #dd9f5c, #f8cf94);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0.2rem 0;
+        }
+
+        .name-elegant {
+            font-size: 1.9rem;
+            font-weight: 600;
+            background: linear-gradient(115deg, #bc7536, #e8b16b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin: 0.2rem 0 0.1rem;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e0b070, #f5cf9a, #e0b070, transparent);
+            margin: 1rem auto;
+        }
+
+        /* Poetic verses & wishes */
+        .poetry-lines {
+            margin: 1.6rem 0 1rem;
+            line-height: 1.75;
+        }
+
+        .verse {
+            font-size: 1.1rem;
+            color: #2e241a;
+            margin: 0.9rem 0;
+            font-weight: 500;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .blessing-block {
+            background: #fff6ea;
+            border-radius: 2rem;
+            padding: 1.4rem 1.8rem;
+            margin: 1.8rem 0 1.2rem;
+            text-align: left;
+            border-left: 5px solid #e6b26a;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .blessing-text {
+            font-family: 'Segoe UI', 'Georgia', serif;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #4a3722;
+            font-style: normal;
+            letter-spacing: 0.2px;
+        }
+
+        .blessing-text strong {
+            color: #b45f2b;
+            font-weight: 600;
+        }
+
+        .signature-area {
+            margin-top: 1.8rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            border-top: 1px dashed #e9cfaa;
+            padding-top: 1.2rem;
+        }
+
+        .wish-button {
+            background: #e2bc83;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-family: 'Segoe UI', 'Georgia', serif;
+            font-weight: 600;
+            color: #2f1f0e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            letter-spacing: 0.6px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .wish-button:hover {
+            background: #c48542;
+            color: white;
+            transform: scale(0.96);
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.2rem;
+            z-index: 999;
+            animation: heartFloat 5s ease-out forwards;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-140px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .poem-core {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .verse {
+                font-size: 0.98rem;
+            }
+            .blessing-text {
+                font-size: 0.9rem;
+            }
+            .candle-bless {
+                font-size: 2.5rem;
+            }
+            .name-elegant {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="star-field" id="starField"></div>
+<div class="floating-magic" id="magicField"></div>
+
+<div class="birthday-sanctum">
+    <div class="poem-core">
+        <div class="candle-bless">✨🕯️🎂🕯️✨</div>
+        <h1>A Birthday Prayer<br>Wishes for you</h1>
+        <div class="name-elegant">✦ Maulidia Nur Ihsani ✦</div>
+        <div class="divider"></div>
+
+        <div class="poetry-lines" id="poetryContainer">
+            <!-- dynamic poetic verses will be inserted here -->
+        </div>
+
+        <!-- Special blessing with the exact requested message -->
+        <div class="blessing-block" id="specialBlessing">
+            <div class="blessing-text">
+                🌙 <strong>i hope today you're not only healthy in body</strong> but also at peace in mind,<br>
+                may good news find you, may unexpected blessings come your way,<br>
+                may little things surround you with smiles, and may you find reason to believe that today can be better.<br>
+                ✨ <strong>Happy birthday, stranger!!</strong> ✨
+            </div>
+        </div>
+
+        <div class="signature-area">
+            <button class="wish-button" id="renewBlessingBtn">🌸 Send Warmth Again 🌸</button>
+        </div>
+        <div style="font-size: 0.7rem; margin-top: 1rem; color: #b27d4a; opacity: 0.8;">
+            ♡ a celestial whisper, woven just for you ♡
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // POETIC BIRTHDAY WISH (ENGLISH) FOR MAULIDIA NUR IHSANI
+    // Includes lyrical verses + the specific heartfelt message.
+    // ============================================================
+    
+    const RECIPIENT = "Maulidia Nur Ihsani";
+    
+    // Elegant poetic lines blending nature, hope, and personal touch.
+    // The name appears gracefully within the verses.
+    const poeticVerses = [
+        `"The dawn unfolds a golden hue,`,
+        `a day the universe made new.`,
+        `For Maulidia Nur Ihsani, sweet and true,`,
+        `the world tonight belongs to you."`,
+        ``,
+        `May gentle winds caress your soul,`,
+        `and quiet rivers make you whole.`,
+        `May every star that learned your name,`,
+        `ignite a wish without a flame.`,
+        ``,
+        `Let worries fade like morning mist,`,
+        `a peaceful heart — the sweetest gift.`,
+        `For peace of mind, a tranquil shore,`,
+        `you are the one the heavens adore.`,
+        ``,
+        `And when the world feels out of place,`,
+        `remember grace within your face.`,
+        `Today can be a brighter start,`,
+        `a symphony within your heart."`
+    ];
+    
+    // Filter out empty strings but preserve content
+    const cleanedVerses = poeticVerses.filter(line => line.trim() !== "");
+    
+    const poetryContainer = document.getElementById('poetryContainer');
+    const renewBtn = document.getElementById('renewBlessingBtn');
+    
+    // === Floating hearts & particles ===
+    function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        const symbols = ['✨', '🌸', '🕯️', '💫', '🌙', '🎈', '💖', '🌼', '🌟'];
+        heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.bottom = '-10px';
+        heart.style.position = 'fixed';
+        heart.style.fontSize = (Math.random() * 20 + 16) + 'px';
+        heart.style.opacity = '0.7';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '999';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            heart.remove();
+        }, 4800);
+    }
+    
+    function burstJoy(amount = 14) {
+        for (let i = 0; i < amount; i++) {
+            setTimeout(() => createFloatingHeart(), i * 70);
+        }
+    }
+    
+    // === Render full poem with smooth fade transition ===
+    function renderPoem() {
+        poetryContainer.style.transition = 'opacity 0.25s ease';
+        poetryContainer.style.opacity = '0';
+        setTimeout(() => {
+            poetryContainer.innerHTML = '';
+            cleanedVerses.forEach(line => {
+                const verseDiv = document.createElement('div');
+                verseDiv.className = 'verse';
+                // if line contains name, add gentle highlight style
+                if (line.includes('Maulidia Nur Ihsani')) {
+                    verseDiv.style.fontWeight = '600';
+                    verseDiv.style.background = 'linear-gradient(135deg, #bd763a, #dfa46a)';
+                    verseDiv.style.backgroundClip = 'text';
+                    verseDiv.style.webkitBackgroundClip = 'text';
+                    verseDiv.style.color = 'transparent';
+                    verseDiv.style.display = 'inline-block';
+                    verseDiv.style.width = '100%';
+                }
+                verseDiv.innerText = line;
+                poetryContainer.appendChild(verseDiv);
+            });
+            poetryContainer.style.opacity = '1';
+        }, 130);
+    }
+    
+    // Additional gentle effect on special blessing block
+    function glowBlessing() {
+        const blessingBlock = document.getElementById('specialBlessing');
+        blessingBlock.style.transition = 'all 0.2s';
+        blessingBlock.style.boxShadow = '0 0 12px rgba(230, 178, 106, 0.6)';
+        setTimeout(() => {
+            blessingBlock.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.05)';
+        }, 500);
+    }
+    
+    // Renew everything: re-render poem, burst sparkles, subtle animation
+    function renewWish() {
+        renderPoem();
+        burstJoy(16);
+        glowBlessing();
+        
+        // Card pulse effect
+        const card = document.querySelector('.birthday-sanctum');
+        card.style.transform = 'scale(1.01)';
+        setTimeout(() => {
+            card.style.transform = '';
+        }, 200);
+        
+        // Slight change in blessing block text emphasis: re-trigger highlight
+        const blessingTextDiv = document.querySelector('.blessing-text');
+        blessingTextDiv.style.opacity = '0.98';
+        setTimeout(() => {
+            blessingTextDiv.style.opacity = '1';
+        }, 100);
+        
+        // additional soft console greeting
+        console.log("%c✨ A new wave of birthday warmth for " + RECIPIENT + " ✨", "color: #e9a35e; font-size: 12px; font-family: monospace;");
+    }
+    
+    // ========== BACKGROUND DECORATIONS: stars and floating particles ==========
+    function generateStars() {
+        const starContainer = document.getElementById('starField');
+        starContainer.innerHTML = '';
+        const starCount = 220;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3.2 + 1.2;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = Math.random() * 2.6 + 1.2 + 's';
+            star.style.animationDelay = Math.random() * 6 + 's';
+            starContainer.appendChild(star);
+        }
+    }
+    
+    function generateMagicParticles() {
+        const magicContainer = document.getElementById('magicField');
+        magicContainer.innerHTML = '';
+        const particleCount = 90;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('petal');
+            const size = Math.random() * 7 + 2.5;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = Math.random() * 10 + 7 + 's';
+            particle.style.animationDelay = Math.random() * 14 + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            magicContainer.appendChild(particle);
+        }
+    }
+    
+    // periodic subtle magic (every 10 sec, small sparkle)
+    let periodicSparkle;
+    function startPeriodicSparkle() {
+        if (periodicSparkle) clearInterval(periodicSparkle);
+        periodicSparkle = setInterval(() => {
+            if (document.hasFocus() && Math.random() > 0.55) {
+                createFloatingHeart();
+            }
+        }, 9000);
+    }
+    
+    // click anywhere on poem core for tiny interactive shimmer
+    const poemCoreDiv = document.querySelector('.poem-core');
+    if (poemCoreDiv) {
+        poemCoreDiv.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                const miniGlow = document.createElement('div');
+                miniGlow.innerText = '✨';
+                miniGlow.style.position = 'fixed';
+                miniGlow.style.left = e.clientX + 'px';
+                miniGlow.style.top = e.clientY + 'px';
+                miniGlow.style.fontSize = '22px';
+                miniGlow.style.pointerEvents = 'none';
+                miniGlow.style.zIndex = '9999';
+                miniGlow.style.opacity = '0.6';
+                miniGlow.style.transition = 'all 0.7s ease';
+                document.body.appendChild(miniGlow);
+                setTimeout(() => {
+                    miniGlow.style.opacity = '0';
+                    miniGlow.style.transform = 'translateY(-25px)';
+                    setTimeout(() => miniGlow.remove(), 800);
+                }, 50);
+            }
+        });
+    }
+    
+    // Add hover effect on blessing text to reinforce message
+    const blessingDiv = document.getElementById('specialBlessing');
+    if (blessingDiv) {
+        blessingDiv.addEventListener('mouseenter', () => {
+            blessingDiv.style.transform = 'scale(1.01)';
+            blessingDiv.style.transition = '0.2s';
+        });
+        blessingDiv.addEventListener('mouseleave', () => {
+            blessingDiv.style.transform = 'scale(1)';
+        });
+    }
+    
+    // Ensure the specific message remains exactly as requested: 
+    // We keep the original request text inside blessing-block. No modifications to wording.
+    // However we also add the name elegantly displayed and poetic verses integrated.
+    
+    // Also we inject the recipient name into page title and a subtle meta
+    document.title = `Happy Birthday, ${RECIPIENT} ✨`;
+    
+    // ========== INITIALIZE ==========
+    window.addEventListener('load', () => {
+        generateStars();
+        generateMagicParticles();
+        renderPoem();
+        startPeriodicSparkle();
+        
+        // Initial joyful burst after load
+        setTimeout(() => {
+            burstJoy(12);
+        }, 400);
+        
+        // Soft console welcome
+        console.log(`%c🕯️ Happy Birthday, ${RECIPIENT} 🕯️`, "color: #f5bc70; font-size: 14px; font-weight: bold;");
+        console.log("%cMay peace find you, and blessings unexpected.", "color: #d49354; font-style: italic;");
+    });
+    
+    // Renew button event
+    renewBtn.addEventListener('click', renewWish);
+    
+    // Additional dynamic: on window resize, no need to regenerate stars but keep consistent
+    window.addEventListener('resize', () => {
+        // optional: maintain no overlap; but stars are absolute so fine.
+    });
+    
+    // Make the blessing message reappear with gentle highlight on renew (already done)
+    // Also ensures that the custom long message is never overwritten but stays intact.
+    // For safe measure, we re-check DOM content after any possible external change: but we never modify it.
+    // The special blessing block remains untouched in innerHTML.
+    
+    // Double-check that the exact phrase "Happy birthday, stranger!!" is present.
+    // The static HTML already includes the precise requested text.
+    // To reinforce: Add a subtle animation to the stranger line?
+    const strangerLine = document.querySelector('.blessing-text');
+    if (strangerLine && strangerLine.innerHTML.includes("Happy birthday, stranger!!")) {
+        // all good
+    }
+    
+    // Also add a floating effect for name-elegant element
+    const nameSpan = document.querySelector('.name-elegant');
+    if (nameSpan) {
+        setInterval(() => {
+            nameSpan.style.opacity = '0.98';
+            setTimeout(() => {
+                if (nameSpan) nameSpan.style.opa
